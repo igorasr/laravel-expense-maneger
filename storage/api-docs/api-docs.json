@@ -1,0 +1,391 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Expense Maneger",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http//localhost:8000"
+        }
+    ],
+    "paths": {
+        "/expenses": {
+            "get": {
+                "tags": [
+                    "Expenses"
+                ],
+                "summary": "Listar despesas",
+                "operationId": "7a2f260486e2cb9b4ad49611ab72ca6d",
+                "responses": {
+                    "200": {
+                        "description": "Lista de despesas retornada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "ID da despesa",
+                                            "type": "integer",
+                                            "example": "18"
+                                        },
+                                        "description": {
+                                            "description": "Descrição da despesa",
+                                            "type": "string",
+                                            "example": "Testando"
+                                        },
+                                        "amount": {
+                                            "description": "Valor da despesa",
+                                            "type": "numeric",
+                                            "example": "30"
+                                        },
+                                        "user_id": {
+                                            "description": "ID do usuário associado à despesa",
+                                            "type": "integer",
+                                            "example": "7"
+                                        },
+                                        "date": {
+                                            "description": "Data da despesa",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-06-04 15:51:00"
+                                        },
+                                        "created_at": {
+                                            "description": "Data de criação da despesa",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-06-04T19:47:59.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "description": "Data de atualização da despesa",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-06-04T19:47:59.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Expenses"
+                ],
+                "summary": "Criar despesa",
+                "operationId": "6fbed3965c582f226dfe11f5ca632ca5",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "description": "Descrição da despesa",
+                                        "type": "string",
+                                        "example": "Testando"
+                                    },
+                                    "amount": {
+                                        "description": "Valor da despesa",
+                                        "type": "integer",
+                                        "example": "30"
+                                    },
+                                    "user_id": {
+                                        "description": "ID do usuário associado à despesa",
+                                        "type": "integer",
+                                        "example": "7"
+                                    },
+                                    "date": {
+                                        "description": "Data da despesa",
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "2023-06-04 15:51:00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Despesa criada com sucesso"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/expenses/{id}": {
+            "get": {
+                "tags": [
+                    "Expenses"
+                ],
+                "summary": "Obter despesa por ID",
+                "operationId": "106dabd16e076027c6003db6c2d0fc29",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da despesa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "18"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Despesa retornada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "ID da despesa",
+                                            "type": "integer",
+                                            "example": "18"
+                                        },
+                                        "description": {
+                                            "description": "Descrição da despesa",
+                                            "type": "string",
+                                            "example": "Testando"
+                                        },
+                                        "amount": {
+                                            "description": "Valor da despesa",
+                                            "type": "numeric",
+                                            "example": "30"
+                                        },
+                                        "user_id": {
+                                            "description": "ID do usuário associado à despesa",
+                                            "type": "integer",
+                                            "example": "7"
+                                        },
+                                        "date": {
+                                            "description": "Data da despesa",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-06-04 15:51:00"
+                                        },
+                                        "created_at": {
+                                            "description": "Data de criação da despesa",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-06-04T19:47:59.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "description": "Data de atualização da despesa",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-06-04T19:47:59.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Despesa não encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Expenses"
+                ],
+                "summary": "Excluir despesa",
+                "operationId": "8a575bf6fe3d84c96af7c3eb030bff6c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da despesa a ser excluída",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "18"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Despesa excluída com sucesso"
+                    },
+                    "404": {
+                        "description": "Despesa não encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Expenses"
+                ],
+                "summary": "Atualizar despesa",
+                "operationId": "9d681bc553b63bf6e07d742bcf4d41ad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da despesa a ser atualizada",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "18"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "description": "Nova descrição da despesa",
+                                        "type": "string",
+                                        "example": "Testando"
+                                    },
+                                    "amount": {
+                                        "description": "Novo valor da despesa",
+                                        "type": "integer",
+                                        "example": "30"
+                                    },
+                                    "user_id": {
+                                        "description": "Novo ID do usuário associado à despesa",
+                                        "type": "integer",
+                                        "example": "7"
+                                    },
+                                    "date": {
+                                        "description": "Nova data da despesa",
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "2023-06-04 15:51:00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Despesa atualizada com sucesso"
+                    },
+                    "404": {
+                        "description": "Despesa não encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login de usuário",
+                "operationId": "d55f416d61f094eb6038b566bc6e4596",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "O e-mail do usuário",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "teste@teste.com.br"
+                                    },
+                                    "password": {
+                                        "description": "A senha do usuário",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "12345678"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário autenticado com sucesso"
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas"
+                    }
+                }
+            }
+        },
+        "/login/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Registrar um novo usuário",
+                "operationId": "aed802ae6cb42d1a717afa1affbfa37b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "O nome do usuário",
+                                        "type": "string",
+                                        "example": "Igor"
+                                    },
+                                    "email": {
+                                        "description": "O e-mail do usuário",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "teste@teste.com.br"
+                                    },
+                                    "password": {
+                                        "description": "A senha do usuário",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "12345678"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário registrado com sucesso"
+                    }
+                }
+            }
+        }
+    }
+}
